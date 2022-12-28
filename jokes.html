@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<script>
+    const button = document.getElementById('fetch-button');
+    const general_filter_button = document.getElementById('general-filter');
+    const programming_filter_button = document.getElementById('programming-filter')
+    const baseUrl = "https://api.noroff.dev/api/v1/jokes";
+const productContainer = document.querySelector(".posts");
+const categories = document.querySelectorAll(".categories");
+const id = params.get("id");
+
+    button.addEventListener('click', displayData(items))
+    general_filter_button.addEventListener('click', function(){filterByType('general')})
+    programming_filter_button.addEventListener('click', function(){filterByType('programming')})
+
+    async function getJokes(url){
+    const response = await fetch(url);
+    const products = await response.json();
+    products.forEach(function(joke){
+        productContainer.innerHTML += ` <a href="joke.html?id=${joke.id}" class="card">
+        <div class="product-setup"><h2>${joke.setup}</h2>
+        <div class="product-type"><h2>Joke type: ${joke.type}</h2>
+       
+        </a>
+    </div>
+        `
+    })
+
+};
+
+    const items = await fetchData()
+
+    const displayData = (data) => {
+        const container = document.getElementById('data-container')
+        container.innerHTML = ""
+
+        data.forEach(items => {
+            const itemElement = document.createElement('div')
+            itemElement.className = 'jokes'
+            itemElement.innerHTML = `<h2>${item.type}</h2><p>${item.setup}</p>`
+            container.appendChild(itemElement)
+        })
+    }
+
+    const filterByType = (filter_type) => {
+        const filteredItems = items.filter(item => item.type.includes(filter_type))
+
+        displayData(filteredItems)
+    }
+</script>
+</head>
+<body>
+    <button id="fetch-button">Fetch button</button>
+    <button id="general-filter">general</button>
+    <button id="programming-filter">programming</button>
+
+    <div id="data-container"></div>
+    
+</body>
+</html>
