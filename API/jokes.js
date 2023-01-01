@@ -4,16 +4,12 @@ const productContainer = document.querySelector(".posts");
 //Filter buttons
 const generalBtn = document.getElementById('generalBtn');
 const programmingBtn = document.getElementById('programmingBtn');
-const knockknockBtn = document.getElementById('knockknockBtn');
 
 generalBtn.onclick = function(e) {
     getJokes(baseUrl, "general");
 }
 programmingBtn.onclick = function(e) {
     getJokes(baseUrl, "programming");
-}
-knockknockBtn.onclick = function(e) {
-    getJokes(baseUrl, "knock-knock");
 }
 
 
